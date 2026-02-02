@@ -68,7 +68,7 @@ Der NotenTracker bietet folgende Kernfunktionen:
 Die einfachste Methode ist die Nutzung über den Webbrowser:
 
 1. **Browser öffnen** (Chrome, Firefox, Safari, Edge)
-2. **Website aufrufen**: [https://gibb.kurmann.dev/landing/](https://gibb.kurmann.dev/landing/)
+2. **Website aufrufen**: [https://notentracker.site/landing/](https://notentracker.site/landing/)
 3. **"App starten" klicken**
 4. Die App läuft direkt im Browser – keine Installation nötig
 
