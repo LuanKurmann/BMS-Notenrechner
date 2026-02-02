@@ -1,0 +1,39 @@
+name: Zip Project & Update Release
+
+# Führt die Action aus, wenn auf den main Branch gepusht wird
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Erlaubt das manuelle Starten im Browser
+
+permissions:
+  contents: write # WICHTIG: Erlaubt der Action, Releases zu erstellen/löschen
+
+jobs:
+  build-and-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      # Optional: Wenn du Node_Modules installieren willst, um z.B. zu builden,
+      # füge hier Schritte ein. Aber für "das ganze Projekt zippen" reicht das Folgende:
+
+      - name: Projekt zippen
+        # Zippt alles im aktuellen Ordner (.) in 'project.zip'
+        # Schließt node_modules, .git und Build-Ordner aus, damit das Zip sauber bleibt
+        run: |
+          zip -r project.zip . -x "*.git*" "node_modules/*" "dist/*" "android/build/*" ".github/*"
+
+      - name: Release aktualisieren
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: latest          # Der Tag bleibt immer "latest"
+          name: "Aktuellster Projekt-Stand"
+          files: project.zip        # Die Datei, die hochgeladen wird
+          prerelease: false
+          draft: false
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
