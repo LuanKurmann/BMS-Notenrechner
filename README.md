@@ -2,7 +2,7 @@
 
 Eine moderne, webbasierte Anwendung zur Verwaltung und Analyse schulischer Leistungen für Lernende der Berufsbildung und Berufsmaturität in der Schweiz.
 
-🌐 **Live-Demo:** [www.gibb.kurmann.dev](https://www.gibb.kurmann.dev)
+🌐 **Live-Demo:** [www.gnotentracker.site](https://notentracker.site)
 
 
 ## 🎯 Über das Projekt
