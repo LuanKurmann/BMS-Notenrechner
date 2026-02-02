@@ -9,8 +9,8 @@ Eine moderne, webbasierte Anwendung zur Verwaltung und Analyse schulischer Leist
 
 Der NotenTracker ist eine speziell für Schweizer Berufsschulen und Berufsmaturitätsschulen entwickelte Anwendung, die Lernenden hilft, ihre schulischen Leistungen effizient zu verwalten und zu analysieren. Die App bietet automatisierte Durchschnittsberechnungen, visuelle Analysen und unterstützt verschiedene Notensysteme.
 
+Link zum [Benutzerhandbuch](https://github.com/LuanKurmann/BMS-Notenrechner/blob/main/BENUTZERHANDBUCH.md)
 
-- Alle, die ihre schulischen Leistungen systematisch verfolgen möchten
 
 ## ✨ Funktionen
 
