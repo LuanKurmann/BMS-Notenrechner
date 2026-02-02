@@ -98,7 +98,7 @@ Die Web-Version kann als App installiert werden:
 Für Android-Nutzer steht eine native App zur Verfügung:
 
 1. **APK herunterladen**:
-   - Besuche [gibb.kurmann.dev/landing/](https://gibb.kurmann.dev/landing/)
+   - Besuche die App
    - Scrolle zum Download-Bereich
    - Klicke auf "Download für Android"
 
@@ -648,4 +648,3 @@ Vielen Dank, dass du den NotenTracker nutzt! Diese App wurde entwickelt, um dir 
 **Version**: 1.0  
 **Letzte Aktualisierung**: Februar 2025  
 **Autor**: Luan Kurmann  
-**Website**: [www.gibb.kurmann.dev](https://www.gibb.kurmann.dev)
