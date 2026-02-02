@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notentracker - Deine Noten immer im Blick</title>
+    <meta name="description" content="Notentracker - Die smarte App für Schüler und Studenten. Verwalte deine Noten, berechne Durchschnitte und behalte den Überblick über alle Semester.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        const TRANSLATIONS = {
+            de: {
+                title: "Notentracker - Deine Noten immer im Blick",
+                heroTitle1: "Deine Noten",
+                heroTitle2: "immer im Blick",
+                heroDesc: "Die smarte App für Schüler und Studenten. Verwalte alle deine Noten, berechne Durchschnitte automatisch und behalte den Überblick über alle Semester.",
+                startApp: "App starten",
+                download: "Download",
+                featuresTitle: "Alles was du brauchst",
+                featuresDesc: "Notentracker bietet dir alle Funktionen, um deine schulische Leistung im Griff zu behalten.",
+                feature1Title: "Automatische Berechnung",
+                feature1Desc: "Durchschnitte werden automatisch berechnet – mit konfigurierbarer Gewichtung und Rundung für jedes Fach.",
+                feature2Title: "Prüfungskalender",
+                feature2Desc: "Behalte kommende Prüfungen im Blick. Exportiere sie in deinen Kalender (Google, Apple, Outlook).",
+                feature3Title: "Semester-Übersicht",
+                feature3Desc: "Verfolge deine Leistung über alle Semester hinweg. Sieh Trends und erkenne Verbesserungspotenzial.",
+                feature4Title: "Promotionsprüfung",
+                feature4Desc: "Sieh auf einen Blick, ob du die Promotionsbedingungen erfüllst. Keine bösen Überraschungen mehr.",
+                feature5Title: "Abschlussprüfungen",
+                feature5Desc: "Erfasse Abschlussprüfungen als Note oder Punkte. Die Schweizer Formel berechnet die Note automatisch.",
+                feature6Title: "Cloud Sync",
+                feature6Desc: "Synchronisiere deine Noten sicher in der Cloud. Greife von überall darauf zu – Handy, Tablet oder PC.",
+                statSubjects: "Fächer",
+                statSemesters: "Semester",
+                statTemplates: "Vorlagen",
+                statFree: "Kostenlos",
+                downloadTitle: "Jetzt herunterladen",
+                downloadDesc: "Verfügbar für Android, iOS und im Web. Starte jetzt und behalte deine Noten im Griff!",
+                downloadFor: "Download für",
+                comingSoon: "Bald im",
+                webVersionText: "Oder nutze die Web-Version direkt im Browser:",
+                openWebApp: "Web-App öffnen",
+                footerText: "Mit ❤️ entwickelt für Schweizer Schüler und Studenten.",
+                features: "Features"
+            },
+            en: {
+                title: "Notentracker - Your Grades at a Glance",
+                heroTitle1: "Your Grades",
+                heroTitle2: "at a Glance",
+                heroDesc: "The smart app for students. Manage all your grades, calculate averages automatically and keep track of all semesters.",
+                startApp: "Start App",
+                download: "Download",
+                featuresTitle: "Everything you need",
+                featuresDesc: "Notentracker offers you all the features to keep your academic performance under control.",
+                feature1Title: "Automatic Calculation",
+                feature1Desc: "Averages are calculated automatically – with configurable weighting and rounding for each subject.",
+                feature2Title: "Exam Calendar",
+                feature2Desc: "Keep track of upcoming exams. Export them to your calendar (Google, Apple, Outlook).",
+                feature3Title: "Semester Overview",
+                feature3Desc: "Track your performance across all semesters. See trends and identify areas for improvement.",
+                feature4Title: "Promotion Check",
+                feature4Desc: "See at a glance whether you meet the promotion requirements. No more unpleasant surprises.",
+                feature5Title: "Final Exams",
+                feature5Desc: "Record final exams as grades or points. The Swiss formula calculates the grade automatically.",
+                feature6Title: "Cloud Sync",
+                feature6Desc: "Sync your grades securely in the cloud. Access them from anywhere – phone, tablet or PC.",
+                statSubjects: "Subjects",
+                statSemesters: "Semesters",
+                statTemplates: "Templates",
+                statFree: "Free",
+                downloadTitle: "Download now",
+                downloadDesc: "Available for Android, iOS and on the web. Start now and keep your grades under control!",
+                downloadFor: "Download for",
+                comingSoon: "Soon on",
+                webVersionText: "Or use the web version directly in your browser:",
+                openWebApp: "Open Web App",
+                footerText: "Made with ❤️ for Swiss students.",
+                features: "Features"
+            },
+            fr: {
+                title: "Notentracker - Vos notes en un coup d'œil",
+                heroTitle1: "Vos notes",
+                heroTitle2: "en un coup d'œil",
+                heroDesc: "L'application intelligente pour les étudiants. Gérez toutes vos notes, calculez les moyennes automatiquement et gardez une vue d'ensemble sur tous les semestres.",
+                startApp: "Lancer l'app",
+                download: "Télécharger",
+                featuresTitle: "Tout ce dont vous avez besoin",
+                featuresDesc: "Notentracker vous offre toutes les fonctionnalités pour maîtriser vos performances scolaires.",
+                feature1Title: "Calcul automatique",
+                feature1Desc: "Les moyennes sont calculées automatiquement – avec pondération et arrondi configurables pour chaque matière.",
+                feature2Title: "Calendrier d'examens",
+                feature2Desc: "Gardez un œil sur les examens à venir. Exportez-les vers votre calendrier (Google, Apple, Outlook).",
+                feature3Title: "Aperçu des semestres",
+                feature3Desc: "Suivez vos performances sur tous les semestres. Visualisez les tendances et identifiez les points à améliorer.",
+                feature4Title: "Vérification de promotion",
+                feature4Desc: "Voyez en un coup d'œil si vous remplissez les conditions de promotion. Plus de mauvaises surprises.",
+                feature5Title: "Examens finaux",
+                feature5Desc: "Enregistrez les examens finaux en notes ou en points. La formule suisse calcule la note automatiquement.",
+                feature6Title: "Sync Cloud",
+                feature6Desc: "Synchronisez vos notes en toute sécurité dans le cloud. Accédez-y de partout – téléphone, tablette ou PC.",
+                statSubjects: "Matières",
+                statSemesters: "Semestres",
+                statTemplates: "Modèles",
+                statFree: "Gratuit",
+                downloadTitle: "Télécharger maintenant",
+                downloadDesc: "Disponible pour Android, iOS et sur le web. Commencez maintenant et gardez vos notes sous contrôle!",
+                downloadFor: "Télécharger pour",
+                comingSoon: "Bientôt sur",
+                webVersionText: "Ou utilisez la version web directement dans votre navigateur:",
+                openWebApp: "Ouvrir l'app web",
+                footerText: "Développé avec ❤️ pour les étudiants suisses.",
+                features: "Fonctionnalités"
+            }
+        };
+
+        function setLanguage(lang) {
+            const t = TRANSLATIONS[lang];
+            document.documentElement.lang = lang;
+            document.title = t.title;
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Save preference
+            localStorage.setItem('landing-lang', lang);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('landing-lang') || 
+                              navigator.language.split('-')[0] || 'de';
+            const lang = ['de', 'en', 'fr'].includes(savedLang) ? savedLang : 'de';
+            setLanguage(lang);
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #6366f1;
+            --accent: #8b5cf6;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(90deg, #fef08a, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .phone-mockup {
+            width: 280px;
+            height: 580px;
+            background: var(--dark);
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.3);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(0); }
+            50% { transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-20px); }
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 32px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-header {
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            text-align: center;
+        }
+
+        .phone-header h3 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .phone-content {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .mock-card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .mock-grade {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .mock-grade span:first-child {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .mock-grade span:last-child {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #10b981;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Download Section */
+        .download {
+            background: var(--dark);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .download h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .download p {
+            color: #94a3b8;
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+
+        .download-btn svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .download-btn .text {
+            text-align: left;
+        }
+
+        .download-btn .text small {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .download-btn .text span {
+            font-size: 1.125rem;
+        }
+
+        .web-link {
+            margin-top: 2rem;
+        }
+
+        .web-link a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.125rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .web-link a:hover {
+            color: #60a5fa;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.25rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 0.75rem;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .phone-mockup {
+                width: 220px;
+                height: 460px;
+                transform: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2, .download h2 {
+                font-size: 1.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="de" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1><span data-i18n="heroTitle1">Deine Noten</span><br><span data-i18n="heroTitle2">immer im Blick</span></h1>
+                <p data-i18n="heroDesc">Die smarte App für Schüler und Studenten. Verwalte alle deine Noten, berechne Durchschnitte automatisch und behalte den Überblick über alle Semester.</p>
+                <div class="hero-buttons">
+                    <a href="/app" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <span data-i18n="startApp">App starten</span>
+                    </a>
+                    <a href="#download" class="btn btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span data-i18n="download">Download</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-header">
+                            <h3>📊 Notentracker</h3>
+                        </div>
+                        <div class="phone-content">
+                            <div class="mock-card">
+                                <div class="mock-grade">
+                                    <span>Mathematik</span>
+                                    <span>5.5</span>
+                                </div>
+                            </div>
+                            <div class="mock-card">
+                                <div class="mock-grade">
+                                    <span>Deutsch</span>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                            <div class="mock-card">
+                                <div class="mock-grade">
+                                    <span>Englisch</span>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                            <div class="mock-card">
+                                <div class="mock-grade">
+                                    <span>Physik</span>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2 data-i18n="featuresTitle">Alles was du brauchst</h2>
+            <p data-i18n="featuresDesc">Notentracker bietet dir alle Funktionen, um deine schulische Leistung im Griff zu behalten.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                </div>
+                <h3 data-i18n="feature1Title">Automatische Berechnung</h3>
+                <p data-i18n="feature1Desc">Durchschnitte werden automatisch berechnet – mit konfigurierbarer Gewichtung und Rundung für jedes Fach.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <h3 data-i18n="feature2Title">Prüfungskalender</h3>
+                <p data-i18n="feature2Desc">Behalte kommende Prüfungen im Blick. Exportiere sie in deinen Kalender (Google, Apple, Outlook).</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
+                </div>
+                <h3 data-i18n="feature3Title">Semester-Übersicht</h3>
+                <p data-i18n="feature3Desc">Verfolge deine Leistung über alle Semester hinweg. Sieh Trends und erkenne Verbesserungspotenzial.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h3 data-i18n="feature4Title">Promotionsprüfung</h3>
+                <p data-i18n="feature4Desc">Sieh auf einen Blick, ob du die Promotionsbedingungen erfüllst. Keine bösen Überraschungen mehr.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                </div>
+                <h3 data-i18n="feature5Title">Abschlussprüfungen</h3>
+                <p data-i18n="feature5Desc">Erfasse Abschlussprüfungen als Note oder Punkte. Die Schweizer Formel berechnet die Note automatisch.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+                </div>
+                <h3 data-i18n="feature6Title">Cloud Sync</h3>
+                <p data-i18n="feature6Desc">Synchronisiere deine Noten sicher in der Cloud. Greife von überall darauf zu – Handy, Tablet oder PC.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>∞</h3>
+                <p data-i18n="statSubjects">Fächer</p>
+            </div>
+            <div class="stat-item">
+                <h3>∞</h3>
+                <p data-i18n="statSemesters">Semester</p>
+            </div>
+            <div class="stat-item">
+                <h3>9</h3>
+                <p data-i18n="statTemplates">Vorlagen</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p data-i18n="statFree">Kostenlos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <h2 data-i18n="downloadTitle">Jetzt herunterladen</h2>
+        <p data-i18n="downloadDesc">Verfügbar für Android, iOS und im Web. Starte jetzt und behalte deine Noten im Griff!</p>
+        <div class="download-buttons">
+            <a href="/downloads/notentracker.apk" class="download-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341l1.422-2.463a.3.3 0 0 0-.109-.41.3.3 0 0 0-.41.108l-1.44 2.494a8.967 8.967 0 0 0-3.986-.908c-1.47 0-2.86.329-3.986.908l-1.44-2.494a.3.3 0 0 0-.41-.108.3.3 0 0 0-.109.41l1.422 2.463C5.622 16.762 3.5 19.493 3.5 22.75h17c0-3.257-2.122-5.988-4.977-7.409zM7.5 20.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm9 0a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zM6.75 5.75l-1.5-2.75h1l1 2h.5l1-2h1l-1.5 2.75V8h-1.5V5.75zm5.25 0V3h3v1h-2v1h1.5v1H13v1h2v1h-3V5.75zm5 2.25V5.5a.5.5 0 0 1 .5-.5h.5V3.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V5h.5a.5.5 0 0 1 .5.5V8h-4z"/></svg>
+                <div class="text">
+                    <small data-i18n="downloadFor">Download für</small>
+                    <span>Android</span>
+                </div>
+            </a>
+            <a href="#" class="download-btn" style="opacity: 0.6; cursor: not-allowed;" title="Bald verfügbar">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div class="text">
+                    <small data-i18n="comingSoon">Bald im</small>
+                    <span>App Store</span>
+                </div>
+            </a>
+        </div>
+        <div class="web-link">
+            <p style="color: #94a3b8; margin-bottom: 1rem;" data-i18n="webVersionText">Oder nutze die Web-Version direkt im Browser:</p>
+            <a href="/app">
+                <span data-i18n="openWebApp">Web-App öffnen</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Notentracker. <span data-i18n="footerText">Mit ❤️ entwickelt für Schweizer Schüler und Studenten.</span></p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+            <a href="/app">App</a> · 
+            <a href="#features"><span data-i18n="features">Features</span></a> · 
+            <a href="#download"><span data-i18n="download">Download</span></a>
+        </p>
+    </footer>
+</body>
+</html>
